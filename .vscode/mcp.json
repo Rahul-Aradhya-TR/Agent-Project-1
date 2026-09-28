@@ -1,0 +1,39 @@
+{
+  "inputs": [
+    {
+      "id": "ms365TenantId",
+      "type": "promptString",
+      "description": "Azure AD (Entra ID) Tenant ID — or 'common' / 'consumers' / 'organizations'",
+      "default": "common"
+    },
+    {
+      "id": "ms365ClientId",
+      "type": "promptString",
+      "description": "Azure AD App Registration Application (client) ID"
+    },
+    {
+      "id": "ms365ClientSecret",
+      "type": "promptString",
+      "description": "Azure AD App Registration client secret (leave blank for device-code/public client login)",
+      "password": true
+    }
+  ],
+  "servers": {
+    "microsoft-365": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@softeria/ms-365-mcp-server",
+        "--org-mode",
+        "--preset",
+        "outlook,teams"
+      ],
+      "env": {
+        "MS365_MCP_TENANT_ID": "${input:ms365TenantId}",
+        "MS365_MCP_CLIENT_ID": "${input:ms365ClientId}",
+        "MS365_MCP_CLIENT_SECRET": "${input:ms365ClientSecret}"
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "Agent-Project-1",
+  "displayName": "Agent Project 1",
+  "version": "0.1.0",
+  "description": "AI agent scaffold connected to Microsoft Teams and Outlook via the Model Context Protocol (MCP).",
+  "owner": "",
+  "connectors": [
+    {
+      "name": "microsoft-365",
+      "type": "mcp",
+      "configFile": ".mcp.json",
+      "services": ["outlook", "teams"],
+      "provider": "@softeria/ms-365-mcp-server",
+      "credentials": ".env (see .env.example)"
+    }
+  ],
+  "skills": {
+    "directory": "skills",
+    "template": "skills/SKILL_TEMPLATE.md"
+  }
+}
